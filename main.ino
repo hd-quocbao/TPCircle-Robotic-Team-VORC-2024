@@ -32,10 +32,10 @@ Servo motor1; // Đối tượng Motor DC 300 RPM
 Servo motor2; // Đối tượng Motor DC 300 RPM
 Servo motor3; // Đối tượng Motor DC 180 RPM
 Servo motor4; // Đối tượng Motor DC 1500 RPM
-Servo servo_1; // Đối tượng servo 1 dùng cho linear slide của chất thải
-Servo servo_2; // Đối tượng servo 2 dùng cho cửa xả của chất thải
-Servo servo_3; // Đối tượng servo 3 dùng cho cửa xả khoang nước
-Servo servo_4; // Đối tượng servo 4 dùng cho phân loại bóng đen và trắng
+Servo servo_1; // Đối tượng servo 1 dùng cho cửa xả chất thải
+Servo servo_2; // Đối tượng servo 2 dùng cho hệ thống phân loại
+Servo servo_3; // Đối tượng servo 3 dùng cho linear slide bóng đen
+Servo servo_4; // Đối tượng servo 4 dùng cho cửa xả bóng trắng
 
 int vt = 0; // vị trí của servo từ 0-180 độ
 
@@ -98,7 +98,7 @@ void loop() {
     button1Pressed = false;
   }
 
-  if (ps2x.ButtonPressed(PSB_PAD_UP) && !button2Pressed) {
+  if (ps2x.ButtonPressed(PSB_PAD_RIGHT) && !button2Pressed) {
     button2Pressed = true;
     if (!motor4Running) {
       motor4Running = true;
@@ -107,7 +107,7 @@ void loop() {
       motor4Running = false;
       stopMotor4(); // Dừng motor 4
     }
-  } else if (ps2x.ButtonReleased(PSB_PAD_UP)) {
+  } else if (ps2x.ButtonReleased(PSB_PAD_RIGHT)) {
     button2Pressed = false;
   }
 
@@ -158,10 +158,10 @@ void loop() {
   // Điều khiển linear slide
   if (button5Pressed) {
     // kiểm tra nút đã được ấn hay chưa
-    if (ps2x.ButtonPressed(PSB_R1)) {
+    if (ps2x.ButtonPressed(PSB_PAD_UP)) {
       button5Pressed = true;
       servo_3.write(0); // cho servo chạy theo chiều kim đh
-    } else if (ps2x.ButtonReleased(PSB_R1)) {
+    } else if (ps2x.ButtonReleased(PSB_PAD_UP)) {
       button5Pressed = false;
       servo_3.write(90); // cho servo dừng
     }
@@ -170,9 +170,9 @@ void loop() {
   if (button6Pressed) {
     // kiểm tra nút đã được ấn hay chưa
     //  điều khiển cửa xả bóng trắng
-    if (ps2x.ButtonPressed(PSB_L1)) {
+    if (ps2x.ButtonPressed(PSB_PAD_DOWN)) {
       button6Pressed = true servo_4.write(180);
-    } else if (ps2x.ButtonReleased(PSB_L1)) {
+    } else if (ps2x.ButtonReleased(PSB_PAD_DOWN)) {
       button6Pressed = false;
       servo_4.write(90); // Dừng servo
     }
