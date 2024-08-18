@@ -98,7 +98,7 @@ void loop() {
     button1Pressed = false;
   }
 
-  if (ps2x.ButtonPressed(PSB_PAD_RIGHT) && !button2Pressed) {
+  if (ps2x.ButtonPressed(PSB_PAD_UP) && !button2Pressed) {
     button2Pressed = true;
     if (!motor4Running) {
       motor4Running = true;
@@ -107,7 +107,7 @@ void loop() {
       motor4Running = false;
       stopMotor4(); // Dừng motor 4
     }
-  } else if (ps2x.ButtonReleased(PSB_PAD_RIGHT)) {
+  } else if (ps2x.ButtonReleased(PSB_PAD_UP)) {
     button2Pressed = false;
   }
 
@@ -158,10 +158,10 @@ void loop() {
   // Điều khiển linear slide
   if (button5Pressed) {
     // kiểm tra nút đã được ấn hay chưa
-    if (ps2x.ButtonPressed(PSB_PAD_UP)) {
+    if (ps2x.ButtonPressed(PSB_TRIANGLE)) {
       button5Pressed = true;
       servo_3.write(0); // cho servo chạy theo chiều kim đh
-    } else if (ps2x.ButtonReleased(PSB_PAD_UP)) {
+    } else if (ps2x.ButtonReleased(PSB_TRIANGLE)) {
       button5Pressed = false;
       servo_3.write(90); // cho servo dừng
     }
@@ -170,9 +170,9 @@ void loop() {
   if (button6Pressed) {
     // kiểm tra nút đã được ấn hay chưa
     //  điều khiển cửa xả bóng trắng
-    if (ps2x.ButtonPressed(PSB_PAD_DOWN)) {
+    if (ps2x.ButtonPressed(PSB_L1)) {
       button6Pressed = true servo_4.write(180);
-    } else if (ps2x.ButtonReleased(PSB_PAD_DOWN)) {
+    } else if (ps2x.ButtonReleased(PSB_L1)) {
       button6Pressed = false;
       servo_4.write(90); // Dừng servo
     }
